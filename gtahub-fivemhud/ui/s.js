@@ -86,8 +86,32 @@ $(function(){
         }; 
         
         if (Math.round(e.armor) <= 15 ) {
-            $('.progressarmor').css('background-color', 'rgb(213, 74, 51)');
-            $('#armor-icon').css('color', 'rgb(213, 74, 51)');
+            $('.progressarmor').hide()
+            $('.armor').hide()
+            $('#armor-icon').hide();
+            $('.health').css('width', '2.1vw');
+            $('.progresshealth').css('max-width', '2.1vw');
+            $('.health').css('left', '4.2vw');
+            $('.hunger').css('width', '2.1vw');
+            $('.progresshunger').css('max-width', '2.1vw');
+            $('.hunger').css('left', '11vw');
+            $('.thirst').css('width', '2.1vw');
+            $('.progressthirst').css('max-width', '2.1vw');
+            $('.thirst').css('left', '7.5vw');
+            
+        } else if (Math.round(e.armor) > 15 ){
+            $('.progressarmor').show()
+            $('.armor').show()
+            $('#armor-icon').show();
+            $('.health').css('width', '1.8vw');
+            $('.progresshealth').css('max-width', '1.8vw');
+            $('.health').css('left', '3vw');
+            $('.hunger').css('width', '1.8vw');
+            $('.progresshunger').css('max-width', '1.8vw');
+            $('.hunger').css('left', '9.55vw');
+            $('.thirst').css('width', '1.8vw');
+            $('.progressthirst').css('max-width', '1.8vw');
+            $('.thirst').css('left', '6.2vw');
         };
         // end armor //
         
