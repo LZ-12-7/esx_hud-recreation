@@ -1,43 +1,55 @@
-local ESX = exports['es_extended']:getSharedObject()
+local ESX = {}
 
 CreateThread(function()
-    while true do
-            local _s = 1000
-            local ped = PlayerPedId()
-            ESX.TriggerServerCallback('hud:getmoney', function(money, bank)
-                
-                TriggerEvent('esx_status:getStatus', 'thirst', function(status)
-                    thirst = status.getPercent()
-                end)
-                
-                TriggerEvent('esx_status:getStatus', 'hunger', function(status)
-                    hunger = status.getPercent()
-                end)
+    while (true) do
+        TriggerEvent('esx:getSharedObject', function(obj) 
+            ESX = obj 
+        end)
+        Wait(7000)
+    end
 
-                if money ~= nil then
-                    money = money
-                else
-                    money = 0
-                end
-                if bank ~= nil then
-                    bank = bank
-                else
-                    bank = 0
-                end
-                
-                SendNUIMessage({
-                    action = "updateHUD",
-                    hunger = hunger,
-                    thirst = thirst,
-                    money = money,
-                    bank = bank,
-                    health = (GetEntityHealth(ped) -100),
-                    armor = GetPedArmour(ped)
-                })
+    while (ESX.GetPlayerData().job.name ~= nil) do
+        Wait(250)
+    end
 
-            end)
+    ESX.PlayerData = ESX.GetPlayerData()
+end)
 
-        Wait(_s)
+CreateThread(function()
+    local money = nil
+    local bank = nil
+    
+    while (true) do
+
+        while (not money and not bank) do
+            Wait(500)
+        end
+
+        for k,v in pairs(ESX.PlayerData.accounts) do
+            if v.name == "money" then 
+                money = v.money
+            elseif v.name == "bank" then
+                bank = v.money
+            end
+        end
+
+        TriggerEvent('esx_status:getStatus', 'hunger', function(status) 
+            hunger = math.ceil(status.val / 10000)
+        end)
+        TriggerEvent('esx_status:getStatus', 'thirst', function(status) 
+            thirst = math.ceil(status.val / 10000)
+        end)
+        
+        SendNUIMessage({
+            action = "updateHUD",
+            hunger = hunger,
+            thirst = thirst,
+            money = money,
+            bank = bank,
+            health = math.ceil(GetEntityHealth(PlayerPedId()) / 2),
+            armor = GetPedArmour(PlayerPedId())
+        })
+        Wait(1000)
     end
 end)
 
@@ -45,7 +57,7 @@ CreateThread(function()
     while true do
         local _s = 2000
         if IsPedInAnyVehicle(PlayerPedId()) then
-            _s = 100
+            _s = 170
             SendNUIMessage({
                 action = "InVeh";
                 fuel   = GetVehicleFuelLevel(GetVehiclePedIsIn(PlayerPedId(), false));
