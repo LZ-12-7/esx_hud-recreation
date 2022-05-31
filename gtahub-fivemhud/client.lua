@@ -1,8 +1,9 @@
+local ESX = exports['es_extended']:getSharedObject()
+
 CreateThread(function()
     while true do
             local _s = 1000
             local ped = PlayerPedId()
-            local ESX = exports['es_extended']:getSharedObject()
             ESX.TriggerServerCallback('hud:getmoney', function(money, bank)
                 
                 TriggerEvent('esx_status:getStatus', 'thirst', function(status)
