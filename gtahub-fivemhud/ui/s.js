@@ -2,6 +2,12 @@ $(function(){
     console.log('GTAHUB HUD BY LZ AND ALKAPONE, KV DEVELOPMENT')
     window.addEventListener('message', function(event){
         let e = event.data
+        
+        if (e.action === "show") {
+            $('.container-hud').fadeIn(1)
+        } else if (e.action === "hide") {
+            $('.container-hud').fadeOut(1)
+        }
 
         // health //
         if (Math.round(e.health) < 90) {
