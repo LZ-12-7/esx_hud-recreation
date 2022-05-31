@@ -58,19 +58,3 @@ CreateThread(function()
         Wait(_s)
     end
 end)
-
-local light = false
-
-RegisterCommand('lights', function()
-    if light == false then
-        light = true
-        SendNUIMessage({
-            action = "lightOn"
-        })
-    elseif light == true then
-        light = false
-        SendNUIMessage({
-            action = "lightOff"
-        })
-    end
-end)
