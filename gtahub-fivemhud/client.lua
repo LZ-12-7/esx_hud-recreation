@@ -37,6 +37,12 @@ CreateThread(function()
 
             end)
 
+            if IsPauseMenuActive() then
+                SendNUIMessage({action = "hide"})
+            else
+                SendNUIMessage({action = "show"})
+            end
+
         Wait(_s)
     end
 end)
