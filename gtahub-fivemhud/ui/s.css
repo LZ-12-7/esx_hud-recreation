@@ -21,6 +21,7 @@ body {
 
 .progresshealth {
     height: 100%;
+     transition: .5s;
     max-width: 1.8vw;
     background-color: rgb(124, 203, 215);
     border-radius: 1vw;
@@ -46,6 +47,7 @@ body {
 
 .progressthirst {
     height: 100%;
+     transition: .5s;
     max-width: 1.8vw;
     background-color: rgb(124, 203, 215);
     border-radius: 1vw;
@@ -70,6 +72,7 @@ body {
 }
 
 .progresshunger {
+     transition: .5s;
     height: 100%;
     max-width: 1.8vw;
     background-color: rgb(124, 203, 215);
@@ -95,6 +98,7 @@ body {
 }
 
 .progressarmor {
+     transition: .5s;
     height: 100%;
     max-width: 1.8vw;
     background-color: rgb(124, 203, 215);
