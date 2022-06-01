@@ -260,6 +260,7 @@ body {
 .marchasprogress{
     background-color: rgb(231, 88, 78);
     border-radius: .1vw;
+    transition: .5s;
     max-width: 5vw;
     height: 100%;
     -webkit-border-radius: .1vw;
