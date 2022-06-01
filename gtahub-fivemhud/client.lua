@@ -50,7 +50,7 @@ end)
 CreateThread(function()
     while true do
         local _s = 2000
-        if IsPedInAnyVehicle(PlayerPedId()) then
+        if IsPedInAnyVehicle(PlayerPedId(), false) then
             _s = 100
             SendNUIMessage({
                 action = "InVeh";
@@ -59,6 +59,10 @@ CreateThread(function()
                 gear = GetVehicleCurrentGear(GetVehiclePedIsIn(PlayerPedId(), false));
             })
         elseif not IsPedInAnyVehicle(PlayerPedId()) then
+            SendNUIMessage({ action = "outVeh"; })
+        end
+        
+        if IsPedInAnyVehicle(PlayerPedId(), false) and IsPauseMenuActive() then
             SendNUIMessage({ action = "outVeh"; })
         end
         Wait(_s)
