@@ -2,7 +2,7 @@ $(function(){
     console.log('GTAHUB HUD BY LZ AND ALKAPONE, KV DEVELOPMENT')
     window.addEventListener('message', function(event){
         let e = event.data
-        
+
         if (e.action === "show") {
             $('.container-hud').fadeIn(1)
         } else if (e.action === "hide") {
@@ -10,6 +10,19 @@ $(function(){
         }
 
         // health //
+
+        if (Math.round(e.health) < 0) {
+            $('#health-icon').css('transform', 'scale(1.6)')
+            $('#health-icon').css('left', '-1.3vw')
+            $('#health-icon').css('transition', '.8s')
+            $('#health-icon').css('bottom', '-.1vw')
+            
+        } else {
+            $('#health-icon').css('transform', 'scale(.9)')
+            $('#health-icon').css('left', '-1vw')
+            $('#health-icon').css('transition', '0s')
+        };
+
         if (Math.round(e.health) < 90) {
             $('.progresshealth').css('background-color', 'rgb(76, 152, 71)');
             $('#health-icon').css('color', 'rgb(76, 152, 71)');
@@ -126,6 +139,7 @@ $(function(){
             $('.progressbargasolina').css('width', Math.round(e.fuel) + '%');
             $('.marchasprogress').css('width', Math.round(e.kmh) + '%');
             $('.trifotri').text(Math.round(e.fuel) + "");
+            $('.trifotri').css(Math.round(e.fuel) + 'left' + '%');
             $('.km1').text(Math.round(e.kmh) + '');
             $('.marchas').text(Math.round(e.gear) + '');
 
